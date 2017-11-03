@@ -43,7 +43,7 @@
     };
 
     var dgram = require("dgram"),
-        SerialPort = require("serialport"),
+        //SerialPort = require("serialport"),
         net = require("net"),
         WebSocket = require("ws"),
         modules = requireModules([
@@ -52,12 +52,13 @@
             "./osc-websocket-client.js"
         ]),
         osc = shallowMerge({}, modules);
-
+	var p;
     /**********
      * Serial *
      **********/
 
-    osc.SerialPort = function (options) {
+    /*
+	osc.SerialPort = function (options) {
         this.on("open", this.listen.bind(this));
         osc.SLIPPort.call(this, options);
         this.options.bitrate = this.options.bitrate || 9600;
@@ -68,7 +69,7 @@
         }
     };
 
-    var p = osc.SerialPort.prototype = Object.create(osc.SLIPPort.prototype);
+    p = osc.SerialPort.prototype = Object.create(osc.SLIPPort.prototype);
     p.constructor = osc.SerialPort;
 
     p.open = function () {
@@ -132,7 +133,7 @@
             this.serialPort.close();
         }
     };
-
+	*/
 
     /*******
      * UDP *
